@@ -86,6 +86,9 @@ void logHandler()
 
 void handler()
 {
+    if (webServer.hasArg("force"))
+        temperature.readTemperature(true);
+
     if (webServer.hasArg("log")) {
         logHandler();
         return;

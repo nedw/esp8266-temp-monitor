@@ -90,10 +90,10 @@ void initWiFi()
 
     wl_status_t status = WL_IDLE_STATUS;
     for (int i = 0 ; i < 3 ; ++i) {
-        Serial.printf_P(PSTR("Auto connecting to WiFi (%d secs timeout, attempt %d)\n"), WIFI_AUTOCONNECT_TIMEOUT_MS / 1000, i + 1);
+        Serial.printf_P(PSTR("Auto connecting to WiFi, status %d (%d secs timeout, attempt %d)\n"), WiFi.status(), WIFI_AUTOCONNECT_TIMEOUT_MS / 1000, i + 1);
         status = (wl_status_t) WiFi.waitForConnectResult(WIFI_AUTOCONNECT_TIMEOUT_MS);
         if (status != WL_CONNECTED) {
-            Serial.printf_P(PSTR("Could not autoconnect, status %d\n"), (int)status);
+            Serial.printf_P(PSTR("Could not autoconnect, status %d / %d\n"), (int)status, WiFi.status());
         } else {
             break;
         }

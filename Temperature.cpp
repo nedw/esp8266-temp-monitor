@@ -34,10 +34,10 @@ int Temperature::read_BMP280(float* temp_p, float* pres_p, float* alt_p)
     return 0;
 }
 
-int Temperature::readTemperature()
+int Temperature::readTemperature(bool force)
 {
     const uint32_t now = millis() / 1000;
-    if ((now - mLastUpdate) < mUpdateInterval) {
+    if (!force && (now - mLastUpdate) < mUpdateInterval) {
         return -1;
     }
 

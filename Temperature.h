@@ -5,7 +5,7 @@
 class Temperature {
 public:
     void init();
-    int readTemperature();
+    int readTemperature(bool force);
     int getLastTemperature() const       { return mLastTemperature; }
     int getLastUpdate() const            { return mLastUpdate; }
     int getUpdateInterval() const        { return mUpdateInterval; }

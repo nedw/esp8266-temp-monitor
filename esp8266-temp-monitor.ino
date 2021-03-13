@@ -155,11 +155,12 @@ void normalLoop()
             bootEpochTime = lastTimeUpdate;
             Serial.printf_P(PSTR("Boot time %s\n"), ctime(&bootEpochTime));
             initLogger();
+            temperature.readTemperature(true);      // Initial measurement
         }
     }
 
     WebServer::webServer.handleClient();
-    int temp = temperature.readTemperature();
+    int temp = temperature.readTemperature(false);
     if (temp >= 0 && logger) {
         // Note: time is recorded in 10s units to reduce storage requirements
         logger->AddEntry((ntpClient.getEpochTime() - bootEpochTime) / 10, temp);
